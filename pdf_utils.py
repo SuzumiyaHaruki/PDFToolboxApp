@@ -3,6 +3,7 @@ from pdf2image import convert_from_path
 from PIL import Image
 from docx import Document
 import pdfkit
+import comtypes.client
 import os
 
 # --------------------------
@@ -135,7 +136,6 @@ def word_to_pdf(input_docx, output_pdf):
         output_pdf (str): 输出PDF路径
     Warning: 依赖Microsoft Word客户端，必须安装Office
     """
-    import comtypes.client
     word = comtypes.client.CreateObject("Word.Application")
     doc = word.Documents.Open(input_docx)
     doc.SaveAs(output_pdf, FileFormat=17)  # 17对应PDF格式
